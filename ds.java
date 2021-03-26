@@ -10,7 +10,6 @@ public class AlgorithmsDataStructures2 {
         int arrLength = arrayOriginal.length;
         arrayResult = new int[arrLength];
         recursiveBST(0, arrLength - 1, 0);
-        arrayResult[0] = arrayOriginal[arrLength / 2];
         return arrayResult;
     }
 
@@ -20,12 +19,8 @@ public class AlgorithmsDataStructures2 {
         if (indexBST >= arrayOriginal.length) {
             return;
         }
-        recursiveBST(indexBeginOriginal, indexCentralElement, 2 * indexBST + 1);
-        if (indexCentralElement >= arrayOriginal.length / 2) {
-            arrayResult[indexBST] = arrayOriginal[indexCentralElement + 1];
-        } else {
-            arrayResult[indexBST] = arrayOriginal[indexCentralElement];
-        }
-        recursiveBST(indexCentralElement, indexEndOriginal, 2 * indexBST + 2);
+        recursiveBST(indexBeginOriginal, indexCentralElement - 1, 2 * indexBST + 1);
+        arrayResult[indexBST] = arrayOriginal[indexCentralElement];
+        recursiveBST(indexCentralElement + 1, indexEndOriginal, 2 * indexBST + 2);
     }
 }
